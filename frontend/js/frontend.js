@@ -19,9 +19,9 @@ function FrontEnd() {
   me.reloadRestaurants = async () => {
     let query = "";
     if (me.amenities.length) {
-      query = "?amenities=" + me.amenities.join(",");
+      query = "?amenities=" + me.amenities.join(","); // didn't know that a string can be created this way to use as a parameter when using fetch
     }
-    const res = await fetch("/api/restaurants" + query);
+    const res = await fetch("/api/restaurants" + query); // very convenient!!
     if (!res.ok) {
       me.showErrorMessage("Error leading the restaurants");
       return;
@@ -103,7 +103,7 @@ function FrontEnd() {
         if (event.currentTarget.checked) {
           me.amenities = [...me.amenities, checkbox.name];
         } else {
-          me.amenities = me.amenities.filter((am) => am !== checkbox.name);
+          me.amenities = me.amenities.filter((am) => am !== checkbox.name); // greate use of filter to remove the amenities
         }
         me.reloadRestaurants();
       });
