@@ -41,7 +41,7 @@ function AboutUs() {
     messageBox.textContent = message;
     messageBox.classList.add("message");
     document.body.appendChild(messageBox);
-    setTimeout(() => {
+    setTimeout(() => { // i like how you use setTimeout() to remove the pop-up message box
       messageBox.remove();
     }, duration);
   };
