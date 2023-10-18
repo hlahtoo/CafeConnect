@@ -15,9 +15,9 @@ function MyDB() {
 
   myDB.getRestaurants = async (amenities) => {
     let query = {};
-    if (amenities?.length) {
-      amenities = amenities.split(",");
-      query = {
+    if (amenities?.length) { // a good use of optional chaining to check if amentities is undefined
+      amenities = amenities.split(","); 
+      query = { // learnt a lot from how you wrote this query. took a while for me to understand.
         $and: amenities.map((am) => {
           const result = {};
           result[`Amenities.${am}`] = { $gt: 0 };
@@ -44,8 +44,9 @@ function MyDB() {
     try {
       const filter = { _id: new ObjectId(restaurantId) };
       const update = {
-        $inc: updatedAmenities.reduce((acc, amenity) => {
-          return { ...acc, [`Amenities.${amenity}`]: 1 };
+        $inc: updatedAmenities.reduce((acc, amenity) => { 
+          return { ...acc, [`Amenities.${amenity}`]: 1 }; // is there a particular reason why we do a shallow copy and add the key-value pair?
+          // would it be the same if we keep adding key-value pair one after another to an object without doing shallow copy?
         }, {}),
       };
 
